@@ -29,7 +29,9 @@
 *.out
 *.app
 
-\.idea/
+.settings
+.cproject
+.project
 
 cmake-build-debug/
 

@@ -1,25 +1,22 @@
-//============================================================================
-// Name        : ProjetCpp.cpp
-// Author      : 
-// Version     :
-// Copyright   : Your copyright notice
-// Description : Hello World in C++, Ansi-style
-//============================================================================
 
 #include <iostream>
-#include "Animal.h"
-#include "Chien.h"
+#include "Soldat.h"
+#include "Cavalier.h"
 using namespace std;
 
+
+
 int main() {
-	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
 
+	Soldat* m_Soldat = new Soldat("Dupont", 20, "cavalerie");
+	m_Soldat->SeDeplace();
+	m_Soldat->Attaque();
+	delete m_Soldat;
 
-	Animal m_Animal;
-	m_Animal.SeDeplace();
-
-	Chien m_Chien;
-	m_Chien.SeDeplace();
+	Soldat* m_Cavalier = new Cavalier("Dupond", 30, "cavalerie", "toto");
+	m_Cavalier->SeDeplace();
+	m_Cavalier->Attaque();
+	delete m_Cavalier;
 
 	return 0;
 }

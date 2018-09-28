@@ -1,0 +1,22 @@
+
+#ifndef CAVALIER_H_
+#define CAVALIER_H_
+#include <iostream>
+#include "Soldat.h"
+
+namespace std {
+
+	class Cavalier : public Soldat {
+		private:
+			string m_NomCheval;
+		public:
+			Cavalier();
+			Cavalier(string nom, int age, string regiment, string nomCheval);
+			virtual ~Cavalier();
+			void SeDeplace();
+			void Attaque();
+		};
+
+	}
+
+#endif

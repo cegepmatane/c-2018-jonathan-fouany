@@ -4,6 +4,7 @@
 #include "Cavalier.h"
 #include "Fantassin.h"
 #include "Pilote.h"
+#include "Accessoire.h"
 
 using namespace std;
 
@@ -31,5 +32,10 @@ int main() {
 	m_Pilote->Attaque();
 	delete m_Pilote;
 
+    Accessoire* m_Accessoire = new Accessoire("test", 3, "noir");
+    m_Accessoire->ListerDetailsAccessoire();
+    delete m_Accessoire;
+
+    
 	return 0;
 }

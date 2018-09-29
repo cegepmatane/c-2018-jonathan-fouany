@@ -4,7 +4,7 @@
 
 namespace std {
 
-Soldat::Soldat(){}
+	Soldat::Soldat(){}
 
 	Soldat::Soldat(string a_Nom, int a_Age, string a_Regiment) {
 		m_Nom = a_Nom;

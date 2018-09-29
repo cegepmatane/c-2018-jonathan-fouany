@@ -32,7 +32,6 @@
 .settings
 .cproject
 .project
+.idea*
 
-cmake-build-debug/
-
-CMakeLists\.txt
+cmake*

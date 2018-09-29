@@ -7,6 +7,7 @@
 #include "Accessoire.h"
 #include "Fusil.h"
 #include "Casque.h"
+#include "Gilet.h"
 
 using namespace std;
 
@@ -45,6 +46,10 @@ int main() {
 	Casque* m_Casque = new Casque("two", 1, "vert", "leger");
 	m_Casque->ListerDetailsAccessoire();
 	delete(m_Casque);
+
+	Gilet* m_Gilet = new Gilet("three", 15, "marron", 8);
+	m_Gilet->ListerDetailsAccessoire();
+	delete(m_Gilet);
 
 
 	return 0;

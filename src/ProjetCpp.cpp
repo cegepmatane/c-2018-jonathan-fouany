@@ -3,6 +3,7 @@
 #include "Soldat.h"
 #include "Cavalier.h"
 #include "Fantassin.h"
+#include "Pilote.h"
 
 using namespace std;
 
@@ -24,6 +25,11 @@ int main() {
 	m_Fantassin->SeDeplace();
 	m_Fantassin->Attaque();
 	delete m_Fantassin;
+
+	Pilote* m_Pilote = new Pilote("Jackie", 28, "Armée de l'air", "F-16");
+	m_Pilote->SeDeplace();
+	m_Pilote->Attaque();
+	delete m_Pilote;
 
 	return 0;
 }

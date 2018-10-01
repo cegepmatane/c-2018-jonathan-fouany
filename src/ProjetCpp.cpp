@@ -13,7 +13,6 @@
 using namespace std;
 
 
-
 int main() {
 
 	Fusil* m_Fusil = new Fusil("one", 2, "noir", 300);
@@ -24,24 +23,25 @@ int main() {
 	m_Soldat->SeDeplace();
 	m_Soldat->Attaque();
 
-	delete m_Soldat;
-
 	Soldat* m_Cavalier = new Cavalier("Dupond", 30, "cavalerie", "toto", m_Casque);
     m_Casque->ListerDetailsAccessoire();
     m_Cavalier->SeDeplace();
 	m_Cavalier->Attaque();
-	delete m_Cavalier;
 
-	Fantassin* m_Fantassin = new Fantassin("Dupons", 40, "infanterie", "bernadette");
+	Fantassin* m_Fantassin = new Fantassin("Dupons", 40, "infanterie", "bernadette", m_Casque);
 	m_Fantassin->SeDeplace();
 	m_Fantassin->Attaque();
-	delete m_Fantassin;
 
-	Pilote* m_Pilote = new Pilote("Jackie", 28, "Armée de l'air", "F-16");
+	Pilote* m_Pilote = new Pilote("Jackie", 28, "Armée de l'air", "F-16", m_Casque);
 	m_Pilote->SeDeplace();
 	m_Pilote->Attaque();
-	delete m_Pilote;
 
+	delete m_Casque;
+	delete m_Fusil;
+	delete m_Soldat;
+	delete m_Cavalier;
+	delete m_Fantassin;
+	delete m_Pilote;
 
 	return 0;
 }

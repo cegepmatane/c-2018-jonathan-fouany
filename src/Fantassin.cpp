@@ -5,11 +5,12 @@ namespace std {
 
 	Fantassin::Fantassin(){}
 
-	Fantassin::Fantassin(string a_Nom, int a_Age, string a_Regiment, string a_Grenade){
+	Fantassin::Fantassin(string a_Nom, int a_Age, string a_Regiment, string a_Grenade, Accessoire *a_Accessoire){
 		m_Nom = a_Nom;
 		m_Age = a_Age;
 		m_Regiment = a_Regiment;
 		m_Grenade = a_Grenade;
+		m_Accessoire = a_Accessoire;
 	}
 
 	Fantassin::~Fantassin() {}

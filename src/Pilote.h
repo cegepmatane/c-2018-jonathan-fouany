@@ -11,7 +11,7 @@ namespace std {
 			string m_Avion;
 		public:
 			Pilote();
-			Pilote(string nom, int age, string regiment, string nomAvion);
+			Pilote(string nom, int age, string regiment, string nomAvion, Accessoire *accessoire);
 			virtual ~Pilote();
 			void SeDeplace();
 			void Attaque();

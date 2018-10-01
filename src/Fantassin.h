@@ -11,7 +11,7 @@ namespace std {
 			string m_Grenade;
 		public:
 			Fantassin();
-			Fantassin(string nom, int age, string regiment, string grenade);
+			Fantassin(string nom, int age, string regiment, string grenade, Accessoire *Accessoire);
 			virtual ~Fantassin();
 			void SeDeplace();
 			void Attaque();

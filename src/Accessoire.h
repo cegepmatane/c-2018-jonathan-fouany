@@ -7,10 +7,11 @@ namespace std {
 
     class Accessoire {
 
-    public:
+    protected:
         string m_Nom;
         int m_Poids;
         string m_Couleur;
+    public:
         Accessoire();
         Accessoire(string nom, int poids, string couleur);
         virtual ~Accessoire();

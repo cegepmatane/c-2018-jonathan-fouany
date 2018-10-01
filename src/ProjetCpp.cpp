@@ -19,12 +19,12 @@ int main() {
     Casque* m_Casque = new Casque("two", 1, "vert", "leger");
 
 	Soldat* m_Soldat = new Soldat("Dupont", 20, "infanterie", m_Fusil);
-	m_Fusil->ListerDetailsAccessoire();
+	m_Soldat->getM_Accessoire()->ListerDetailsAccessoire();
 	m_Soldat->SeDeplace();
 	m_Soldat->Attaque();
 
 	Soldat* m_Cavalier = new Cavalier("Dupond", 30, "cavalerie", "toto", m_Casque);
-    m_Casque->ListerDetailsAccessoire();
+    m_Cavalier->getM_Accessoire()->ListerDetailsAccessoire();
     m_Cavalier->SeDeplace();
 	m_Cavalier->Attaque();
 

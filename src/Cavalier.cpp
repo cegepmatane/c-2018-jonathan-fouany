@@ -22,4 +22,6 @@ namespace std {
 		cout << "Cavalier: " + m_Nom +  " : J'attaque !" << endl;
 	}
 
+
+
 }

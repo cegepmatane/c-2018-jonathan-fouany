@@ -21,7 +21,11 @@ namespace std {
 			virtual ~Soldat();
 			virtual void SeDeplace();
 			virtual void Attaque();
-		};
+
+		Accessoire *getM_Accessoire() const;
+
+		void setM_Accessoire(Accessoire *m_Accessoire);
+	};
 
 }
 

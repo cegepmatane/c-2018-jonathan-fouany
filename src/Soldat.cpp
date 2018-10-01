@@ -23,4 +23,8 @@ namespace std {
 		cout << "Soldat: " + m_Nom + " : A l'attaque!" << endl;
 	}
 
+    Accessoire *Soldat::getM_Accessoire() const {
+        return m_Accessoire;
+    }
+
 }

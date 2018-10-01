@@ -1,5 +1,6 @@
 
 #include <iostream>
+#include <list>
 #include "Soldat.h"
 #include "Cavalier.h"
 #include "Fantassin.h"
@@ -15,13 +16,19 @@ using namespace std;
 
 int main() {
 
-	Soldat* m_Soldat = new Soldat("Dupont", 20, "infanterie");
+	Fusil* m_Fusil = new Fusil("one", 2, "noir", 300);
+    Casque* m_Casque = new Casque("two", 1, "vert", "leger");
+
+	Soldat* m_Soldat = new Soldat("Dupont", 20, "infanterie", m_Fusil);
+	m_Fusil->ListerDetailsAccessoire();
 	m_Soldat->SeDeplace();
 	m_Soldat->Attaque();
+
 	delete m_Soldat;
 
-	Soldat* m_Cavalier = new Cavalier("Dupond", 30, "cavalerie", "toto");
-	m_Cavalier->SeDeplace();
+	Soldat* m_Cavalier = new Cavalier("Dupond", 30, "cavalerie", "toto", m_Casque);
+    m_Casque->ListerDetailsAccessoire();
+    m_Cavalier->SeDeplace();
 	m_Cavalier->Attaque();
 	delete m_Cavalier;
 
@@ -34,22 +41,6 @@ int main() {
 	m_Pilote->SeDeplace();
 	m_Pilote->Attaque();
 	delete m_Pilote;
-
-    Accessoire* m_Accessoire = new Accessoire("test", 3, "noir");
-    m_Accessoire->ListerDetailsAccessoire();
-    delete m_Accessoire;
-
-    Fusil* m_Fusil = new Fusil("one", 2, "noir", 300);
-    m_Fusil->ListerDetailsAccessoire();
-    delete(m_Fusil);
-
-	Casque* m_Casque = new Casque("two", 1, "vert", "leger");
-	m_Casque->ListerDetailsAccessoire();
-	delete(m_Casque);
-
-	Gilet* m_Gilet = new Gilet("three", 15, "marron", 8);
-	m_Gilet->ListerDetailsAccessoire();
-	delete(m_Gilet);
 
 
 	return 0;

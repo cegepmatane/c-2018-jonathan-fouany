@@ -11,7 +11,7 @@ namespace std {
 			string m_NomCheval;
 		public:
 			Cavalier();
-			Cavalier(string nom, int age, string regiment, string nomCheval);
+			Cavalier(string nom, int age, string regiment, string nomCheval, Accessoire *accessoire);
 			virtual ~Cavalier();
 			void SeDeplace();
 			void Attaque();

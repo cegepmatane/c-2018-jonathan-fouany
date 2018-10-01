@@ -6,10 +6,11 @@ namespace std {
 
 	Soldat::Soldat(){}
 
-	Soldat::Soldat(string a_Nom, int a_Age, string a_Regiment) {
+	Soldat::Soldat(string a_Nom, int a_Age, string a_Regiment, Accessoire * a_Accessoire) {
 		m_Nom = a_Nom;
 		m_Age = a_Age;
 		m_Regiment = a_Regiment;
+		m_Accessoire = a_Accessoire;
 	}
 
 	Soldat::~Soldat() {}

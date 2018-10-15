@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include <list>
+#include <vector>
 #include "Soldat.h"
 #include "Cavalier.h"
 #include "Fantassin.h"
@@ -19,22 +19,24 @@ int main() {
     Casque* m_Casque = new Casque("two", 1, "vert", "leger");
 
 	Soldat* m_Soldat = new Soldat("Dupont", 20, "infanterie", m_Fusil);
-	m_Soldat->getM_Accessoire()->ListerDetailsAccessoire();
-	m_Soldat->SeDeplace();
-	m_Soldat->Attaque();
-
 	Soldat* m_Cavalier = new Cavalier("Dupond", 30, "cavalerie", "toto", m_Casque);
-    m_Cavalier->getM_Accessoire()->ListerDetailsAccessoire();
-    m_Cavalier->SeDeplace();
-	m_Cavalier->Attaque();
-
 	Fantassin* m_Fantassin = new Fantassin("Dupons", 40, "infanterie", "bernadette", m_Casque);
-	m_Fantassin->SeDeplace();
-	m_Fantassin->Attaque();
-
 	Pilote* m_Pilote = new Pilote("Jackie", 28, "Armée de l'air", "F-16", m_Casque);
-	m_Pilote->SeDeplace();
-	m_Pilote->Attaque();
+
+
+	vector<Soldat*> listeSoldats;
+    listeSoldats.push_back(m_Soldat);
+    listeSoldats.push_back(m_Cavalier);
+    listeSoldats.push_back(m_Fantassin);
+    listeSoldats.push_back(m_Pilote);
+
+
+    for (int i = 0; i < listeSoldats.size(); ++i) {
+        cout << "========" << endl;
+        listeSoldats.at(i)->Attaque();
+        listeSoldats.at(i)->getM_Accessoire()->ListerDetailsAccessoire();
+        listeSoldats.at(i)->SeDeplace();
+    }
 
 	delete m_Casque;
 	delete m_Fusil;

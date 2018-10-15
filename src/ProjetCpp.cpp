@@ -23,33 +23,75 @@ int main() {
 
     string ligne;
 
+    string nom;
+    int valeur1;
+    string couleur;
+    int valeur2;
+
+    Accessoire* m_Accessoire1;
+    Accessoire* m_Accessoire2;
+    Accessoire* m_Accessoire3;
+
+    int compteurLigne = -1;
+
     while(!source.eof()) {
         getline(source, ligne);
 
         unsigned int positionDebut = 0;
         unsigned int positionFin = 0;
-        
+
+        int compteur = 0;
+        compteurLigne++;
+
         do {
             positionFin = ligne.find(";", positionDebut);
 
             string valeur = ligne.substr(positionDebut, positionFin - positionDebut);
-            cout << valeur << endl;
 
+            switch (compteur){
+                case 0:
+                    nom = valeur;
+                    break;
+                case 1:
+                    valeur1 = stoi(valeur);
+                    break;
+                case 2:
+                    couleur = valeur;
+                    break;
+                case 3:
+                    valeur2 = stoi(valeur);
+                    break;
+            }
+
+            if (compteur % 3 == 0 && compteurLigne == 0)
+                m_Accessoire1 = new Accessoire(nom, valeur1, couleur, valeur2);
+            else if (compteur % 3 == 0 && compteurLigne == 1)
+                m_Accessoire2 = new Accessoire(nom, valeur1, couleur, valeur2);
+            else if (compteur % 3 == 0 && compteurLigne == 2)
+                m_Accessoire3 = new Accessoire(nom, valeur1, couleur, valeur2);
+
+
+            compteur++;
+            cout << valeur << endl;
             positionDebut = positionFin + 1;
         }
         while((positionDebut != 0) && (ligne.length() != positionDebut));
     }
 
 
+    m_Accessoire1->ListerDetailsAccessoire();
+    m_Accessoire2->ListerDetailsAccessoire();
+    m_Accessoire3->ListerDetailsAccessoire();
 
 
-	Fusil* m_Fusil = new Fusil("one", 2, "noir", 300);
-    Casque* m_Casque = new Casque("two", 1, "vert", "leger");
+    Fusil* m_Fusil = new Fusil("one", 2, "noir", 300);
+    Casque* m_Casque = new Casque("two", 1, "vert", 50);
+    Gilet* m_Gilet = new Gilet("gilet", 18, "marron", 10);
 
 	Soldat* m_Soldat = new Soldat("Dupont", 20, "infanterie", m_Fusil);
 	Soldat* m_Cavalier = new Cavalier("Dupond", 30, "cavalerie", "toto", m_Casque);
 	Fantassin* m_Fantassin = new Fantassin("Dupons", 40, "infanterie", "bernadette", m_Casque);
-	Pilote* m_Pilote = new Pilote("Jackie", 28, "Armée de l'air", "F-16", m_Casque);
+	Pilote* m_Pilote = new Pilote("Jackie", 28, "Armée de l'air", "F-16", m_Gilet);
 
 
 	vector<Soldat*> listeSoldats;

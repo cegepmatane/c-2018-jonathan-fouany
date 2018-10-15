@@ -11,9 +11,10 @@ namespace std {
         string m_Nom;
         int m_Poids;
         string m_Couleur;
+        int m_ValeurSupplementaire;
     public:
         Accessoire();
-        Accessoire(string nom, int poids, string couleur);
+        Accessoire(string nom, int poids, string couleur, int valeurSupplementaire);
         virtual ~Accessoire();
         virtual void ListerDetailsAccessoire();
     };

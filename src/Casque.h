@@ -8,10 +8,10 @@ namespace std {
 
     class Casque : public Accessoire{
     private:
-        string m_Type;
+        string m_Taille;
     public:
         Casque();
-        Casque(string nom, int poids, string couleur, string type);
+        Casque(string nom, int poids, string couleur, int taille);
         virtual ~Casque();
         void ListerDetailsAccessoire();
     };

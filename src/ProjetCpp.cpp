@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <vector>
+#include <fstream>
 #include "Soldat.h"
 #include "Cavalier.h"
 #include "Fantassin.h"
@@ -14,6 +15,33 @@ using namespace std;
 
 
 int main() {
+
+
+    // Lecture des données dans le fichier d'initialisation
+    ifstream source;
+    source.open("../data/init.csv");
+
+    string ligne;
+
+    while(!source.eof()) {
+        getline(source, ligne);
+
+        unsigned int positionDebut = 0;
+        unsigned int positionFin = 0;
+        
+        do {
+            positionFin = ligne.find(";", positionDebut);
+
+            string valeur = ligne.substr(positionDebut, positionFin - positionDebut);
+            cout << valeur << endl;
+
+            positionDebut = positionFin + 1;
+        }
+        while((positionDebut != 0) && (ligne.length() != positionDebut));
+    }
+
+
+
 
 	Fusil* m_Fusil = new Fusil("one", 2, "noir", 300);
     Casque* m_Casque = new Casque("two", 1, "vert", "leger");
@@ -31,12 +59,13 @@ int main() {
     listeSoldats.push_back(m_Pilote);
 
 
-    for (int i = 0; i < listeSoldats.size(); ++i) {
+    /*for (int i = 0; i < listeSoldats.size(); ++i) {
         cout << "========" << endl;
         listeSoldats.at(i)->Attaque();
         listeSoldats.at(i)->getM_Accessoire()->ListerDetailsAccessoire();
         listeSoldats.at(i)->SeDeplace();
-    }
+    }*/
+
 
 	delete m_Casque;
 	delete m_Fusil;

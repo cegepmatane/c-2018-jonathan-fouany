@@ -1,5 +1,6 @@
 
 
+#include <sstream>
 #include "Soldat.h"
 
 namespace std {
@@ -25,6 +26,14 @@ namespace std {
 
     Accessoire *Soldat::getM_Accessoire() const {
         return m_Accessoire;
+    }
+
+    string Soldat::Exporter(){
+        //export en xml
+        stringstream xml;
+        xml << "<Soldat><nom>" << this->m_Nom << "</nom></Soldat>";
+
+        return xml.str();
     }
 
 }

@@ -4,4 +4,7 @@
 <Casque><nom>casque</nom><poids>5</poids></Casque>
 <Fusil><nom>fusil</nom><portee>300</portee></Fusil>
 </Accessoires>
+<Soldats>
+<Cavalier><nom>Dupond</nom><age>30</age><regiment>cavalerie</regiment></Cavalier>
+</Soldats>
 </Monde>

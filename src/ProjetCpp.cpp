@@ -94,11 +94,18 @@ int main() {
 	Pilote* m_Pilote = new Pilote("Jackie", 28, "Armée de l'air", "F-16", m_Accessoire1);
 
 
+
+    vector<Accessoire*> listeAccessoires;
+    listeAccessoires.push_back(m_Accessoire1);
+    listeAccessoires.push_back(m_Accessoire2);
+    listeAccessoires.push_back(m_Accessoire3);
+
 	vector<Soldat*> listeSoldats;
     listeSoldats.push_back(m_Soldat);
     listeSoldats.push_back(m_Cavalier);
     listeSoldats.push_back(m_Fantassin);
     listeSoldats.push_back(m_Pilote);
+
 
 
     for (int i = 0; i < listeSoldats.size(); ++i) {
@@ -112,10 +119,19 @@ int main() {
     fichierMonde.open("../data/monde.xml");
     fichierMonde << "<Monde>" << endl;
     fichierMonde << "<Accessoires>" << endl;
-    fichierMonde << m_Accessoire1->Exporter() <<endl;
+    /*fichierMonde << m_Accessoire1->Exporter() <<endl;
     fichierMonde << m_Accessoire2->Exporter() <<endl;
-    fichierMonde << m_Accessoire3->Exporter() <<endl;
+    fichierMonde << m_Accessoire3->Exporter() <<endl;*/
+
+    for (int j = 0; j < listeAccessoires.size(); ++j) {
+        fichierMonde << listeAccessoires.at(j)->Exporter() << endl;
+    }
+
     fichierMonde << "</Accessoires>" << endl;
+    fichierMonde << "<Soldats>" << endl;
+    fichierMonde << m_Cavalier->Exporter() <<endl;
+    fichierMonde << "</Soldats>" << endl;
+
     fichierMonde << "</Monde>" << endl;
     fichierMonde.close();
 

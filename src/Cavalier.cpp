@@ -1,4 +1,5 @@
 
+#include <sstream>
 #include "Cavalier.h"
 namespace std {
 
@@ -21,6 +22,13 @@ namespace std {
 	void Cavalier::Attaque(){
 		cout << "Cavalier: " + m_Nom +  " : J'attaque !" << endl;
 	}
+
+    string Cavalier::Exporter(){
+        stringstream xml;
+        xml << "<Cavalier><nom>" << this->m_Nom << "</nom><age>" << this->m_Age << "</age><regiment>" << this->m_Regiment << "</regiment></Cavalier>";
+
+        return xml.str();
+    }
 
 
 

@@ -15,7 +15,9 @@ namespace std {
 			virtual ~Cavalier();
 			void SeDeplace();
 			void Attaque();
-		};
+			string Exporter();
+
+	};
 
 	}
 

@@ -14,6 +14,7 @@ namespace std {
         Fusil(string nom, int poids, string couleur, int portee);
         virtual ~Fusil();
         void ListerDetailsAccessoire();
+        string Exporter();
     };
 
 }

@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Gilet.h"
 
 namespace std {
@@ -15,6 +16,13 @@ namespace std {
 
     void Gilet::ListerDetailsAccessoire(){
         cout << "Gilet: Poids: " << m_Poids << + "; Couleur : " + m_Couleur + "; Epaisseur : " << m_Epaisseur << endl;
+    }
+
+    string Gilet::Exporter(){
+        stringstream xml;
+        xml << "<Gilet><nom>" << this->m_Nom << "</nom><couleur>" << this->m_Couleur << "</couleur></Gilet>";
+
+        return xml.str();
     }
 
 }

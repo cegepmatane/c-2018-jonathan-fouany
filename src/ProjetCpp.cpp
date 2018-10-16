@@ -112,7 +112,9 @@ int main() {
     fichierMonde.open("../data/monde.xml");
     fichierMonde << "<Monde>" << endl;
     fichierMonde << "<Accessoires>" << endl;
+    fichierMonde << m_Accessoire1->Exporter() <<endl;
     fichierMonde << m_Accessoire2->Exporter() <<endl;
+    fichierMonde << m_Accessoire3->Exporter() <<endl;
     fichierMonde << "</Accessoires>" << endl;
     fichierMonde << "</Monde>" << endl;
     fichierMonde.close();

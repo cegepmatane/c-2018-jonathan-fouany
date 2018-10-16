@@ -1,5 +1,7 @@
 <Monde>
 <Accessoires>
+<Gilet><nom>gilet</nom><couleur>noir</couleur></Gilet>
 <Casque><nom>casque</nom><poids>5</poids></Casque>
+<Fusil><nom>fusil</nom><portee>300</portee></Fusil>
 </Accessoires>
 </Monde>

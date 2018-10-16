@@ -14,6 +14,7 @@ namespace std {
         Gilet(string nom, int poids, string couleur, int epaisseur);
         virtual ~Gilet();
         void ListerDetailsAccessoire();
+        string Exporter();
     };
 
 }

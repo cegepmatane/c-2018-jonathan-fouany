@@ -1,4 +1,5 @@
 
+#include <sstream>
 #include "Fusil.h"
 
 namespace std {
@@ -16,6 +17,13 @@ namespace std {
 
     void Fusil::ListerDetailsAccessoire(){
         cout << "Fusil: " + m_Nom + "; Poids: " << m_Poids << + "; Couleur : " + m_Couleur + "; Portee : " << m_Portee << endl;
+    }
+
+    string Fusil::Exporter(){
+        stringstream xml;
+        xml << "<Fusil><nom>" << this->m_Nom << "</nom><portee>" << this->m_Portee << "</portee></Fusil>";
+
+        return xml.str();
     }
 
 }

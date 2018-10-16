@@ -72,16 +72,11 @@ int main() {
 
 
             compteur++;
-            cout << valeur << endl;
+            //cout << valeur << endl;
             positionDebut = positionFin + 1;
         }
         while((positionDebut != 0) && (ligne.length() != positionDebut));
     }
-
-
-    /*m_Accessoire1->ListerDetailsAccessoire();
-    m_Accessoire2->ListerDetailsAccessoire();
-    m_Accessoire3->ListerDetailsAccessoire();*/
 
 
     /*Fusil* m_Fusil = new Fusil("one", 2, "noir", 300);
@@ -92,7 +87,6 @@ int main() {
 	Soldat* m_Cavalier = new Cavalier("Dupond", 30, "cavalerie", "toto", m_Accessoire2);
 	Fantassin* m_Fantassin = new Fantassin("Dupons", 40, "infanterie", "bernadette", m_Accessoire3);
 	Pilote* m_Pilote = new Pilote("Jackie", 28, "Armée de l'air", "F-16", m_Accessoire1);
-
 
 
     vector<Accessoire*> listeAccessoires;
@@ -110,26 +104,25 @@ int main() {
 
     for (int i = 0; i < listeSoldats.size(); ++i) {
         cout << "========" << endl;
+        listeSoldats.at(i)->SeDeplace();
         listeSoldats.at(i)->Attaque();
         listeSoldats.at(i)->getM_Accessoire()->ListerDetailsAccessoire();
-        listeSoldats.at(i)->SeDeplace();
     }
 
     ofstream fichierMonde;
     fichierMonde.open("../data/monde.xml");
     fichierMonde << "<Monde>" << endl;
-    fichierMonde << "<Accessoires>" << endl;
-    /*fichierMonde << m_Accessoire1->Exporter() <<endl;
-    fichierMonde << m_Accessoire2->Exporter() <<endl;
-    fichierMonde << m_Accessoire3->Exporter() <<endl;*/
 
+    fichierMonde << "<Accessoires>" << endl;
     for (int j = 0; j < listeAccessoires.size(); ++j) {
         fichierMonde << listeAccessoires.at(j)->Exporter() << endl;
     }
-
     fichierMonde << "</Accessoires>" << endl;
+
     fichierMonde << "<Soldats>" << endl;
-    fichierMonde << m_Cavalier->Exporter() <<endl;
+    for (int j = 0; j < listeSoldats.size(); ++j) {
+        fichierMonde << listeSoldats.at(j)->Exporter() << endl;
+    }
     fichierMonde << "</Soldats>" << endl;
 
     fichierMonde << "</Monde>" << endl;

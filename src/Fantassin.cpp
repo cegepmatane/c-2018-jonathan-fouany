@@ -1,4 +1,5 @@
 
+#include <sstream>
 #include "Fantassin.h"
 
 namespace std {
@@ -21,6 +22,13 @@ namespace std {
 
 	void Fantassin::Attaque(){
 		cout << "Fantassin: " + m_Nom +  " : Grenade " + m_Grenade + "!"  << endl;
+	}
+
+	string Fantassin::Exporter(){
+		stringstream xml;
+		xml << "<Fantassin><nom>" << this->m_Nom << "</nom><age>" << this->m_Age << "</age><grenade>" << this->m_Grenade << "</grenade></Fantassin>";
+
+		return xml.str();
 	}
 
 }

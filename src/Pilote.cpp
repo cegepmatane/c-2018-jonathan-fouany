@@ -1,4 +1,5 @@
 
+#include <sstream>
 #include "Pilote.h"
 
 namespace std {
@@ -22,6 +23,13 @@ namespace std {
 
 	void Pilote::Attaque(){
 		cout << "Pilote: " + m_Nom +  " : Je tire un missile"  << endl;
+	}
+
+	string Pilote::Exporter(){
+		stringstream xml;
+		xml << "<Pilote><nom>" << this->m_Nom << "</nom><age>" << this->m_Age << "</age><avion>" << this->m_Avion << "</avion></Pilote>";
+
+		return xml.str();
 	}
 
 }

@@ -15,7 +15,9 @@ namespace std {
 			virtual ~Fantassin();
 			void SeDeplace();
 			void Attaque();
-		};
+			string Exporter();
+
+	};
 
 	}
 

@@ -1,4 +1,5 @@
 
+#include <sstream>
 #include "Casque.h"
 
 namespace std {
@@ -16,6 +17,13 @@ namespace std {
 
     void Casque::ListerDetailsAccessoire(){
         cout << "Casque: Poids: " << m_Poids << + "; Couleur : " + m_Couleur + "; Type : " << m_Taille << endl;
+    }
+
+    string Casque::Exporter(){
+        stringstream xml;
+        xml << "<Casque><nom>" << this->m_Nom << "</nom><poids>" << this->m_Poids << "</poids></Casque>";
+
+        return xml.str();
     }
 
 }

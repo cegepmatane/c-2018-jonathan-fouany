@@ -14,6 +14,8 @@ namespace std {
         Casque(string nom, int poids, string couleur, int taille);
         virtual ~Casque();
         void ListerDetailsAccessoire();
+        string Exporter();
+
     };
 
 }

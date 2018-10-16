@@ -17,6 +17,7 @@ namespace std {
         Accessoire(string nom, int poids, string couleur, int valeurSupplementaire);
         virtual ~Accessoire();
         virtual void ListerDetailsAccessoire();
+        virtual string Exporter();
     };
 
 }

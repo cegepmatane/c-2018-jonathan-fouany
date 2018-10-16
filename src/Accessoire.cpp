@@ -1,5 +1,7 @@
 
 #include "Accessoire.h"
+#include <sstream>
+
 
 namespace std {
 
@@ -16,6 +18,14 @@ namespace std {
 
     void Accessoire::ListerDetailsAccessoire(){
         cout << "Accessoire: " + m_Nom + "; poids: " << m_Poids << "; couleur: " + m_Couleur << "; valeur Supplementaire: " << m_ValeurSupplementaire << endl;
+    }
+
+    string Accessoire::Exporter(){
+        //export en xml
+        stringstream xml;
+        xml << "<Accessoire><nom>" << this->m_Nom << "</nom></Accessoire>";
+
+        return xml.str();
     }
 
 }

@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <conio.h>
+#include <afxres.h>
 #include "Soldat.h"
 #include "Cavalier.h"
 #include "Fantassin.h"
@@ -77,6 +79,7 @@ int main() {
         }
         while((positionDebut != 0) && (ligne.length() != positionDebut));
     }
+    //Fin lecture des données
 
 
     /*Fusil* m_Fusil = new Fusil("one", 2, "noir", 300);
@@ -95,20 +98,22 @@ int main() {
     listeAccessoires.push_back(m_Accessoire3);
 
 	vector<Soldat*> listeSoldats;
-    listeSoldats.push_back(m_Soldat);
+    //listeSoldats.push_back(m_Soldat);
     listeSoldats.push_back(m_Cavalier);
     listeSoldats.push_back(m_Fantassin);
     listeSoldats.push_back(m_Pilote);
 
 
 
-    for (int i = 0; i < listeSoldats.size(); ++i) {
+    /*for (int i = 0; i < listeSoldats.size(); ++i) {
         cout << "========" << endl;
         listeSoldats.at(i)->SeDeplace();
         listeSoldats.at(i)->Attaque();
         listeSoldats.at(i)->getM_Accessoire()->ListerDetailsAccessoire();
-    }
+    }*/
 
+
+    // Export des données dans un fichier xml
     ofstream fichierMonde;
     fichierMonde.open("../data/monde.xml");
     fichierMonde << "<Monde>" << endl;
@@ -127,6 +132,53 @@ int main() {
 
     fichierMonde << "</Monde>" << endl;
     fichierMonde.close();
+    //Fin export
+
+
+    //BOUCLE INFINIE DE JEU
+    int tour = 0;
+    char touche;
+    bool gameIsRunning = true;
+    int index = 0;
+
+    while(gameIsRunning){
+        // PREMIER PROBLEME-SOLUTION : dormir sans occuper les ressources
+        Sleep(1000/60);
+        // SECOND PROBLEME-SOLUTION : lire les entrées sans bloquer la boucle
+        if(_kbhit()){
+
+            touche = getch(); // sors la premiere touche appuyée
+            //cout << "touche " << touche << " " << tour << endl;
+
+            switch(touche){
+                case 'q' :
+                    gameIsRunning = false;
+                    cout << "Vous avez quitté le jeu." << endl;
+                    break;
+
+                case 'c' :
+                    if (index >= listeSoldats.size()) index = 0;
+                    listeSoldats.at(index++)->Attaque();
+                    break;
+
+                case 'a' :
+                    listeSoldats.at(index)->Attaque();
+                    break;
+            }
+        }
+
+        while(kbhit()) getch();
+
+        //cout << "tour " << tour << endl;
+        tour++;
+    }
+
+
+
+
+
+
+
 
 
 	/*delete m_Casque;

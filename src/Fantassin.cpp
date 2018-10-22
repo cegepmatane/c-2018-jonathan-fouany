@@ -11,6 +11,7 @@ namespace std {
 		m_Age = a_Age;
 		m_Regiment = a_Regiment;
 		m_Grenade = a_Grenade;
+		m_PointsVie = 100;
 		m_Accessoire = a_Accessoire;
 	}
 

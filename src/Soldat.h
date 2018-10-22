@@ -14,6 +14,7 @@ namespace std {
 			string m_Nom;
 			int m_Age;
 			string m_Regiment;
+			int m_PointsVie;
             Accessoire * m_Accessoire;
 	public:
 			Soldat();

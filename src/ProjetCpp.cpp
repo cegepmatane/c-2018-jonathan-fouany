@@ -129,6 +129,10 @@ int main() {
                     listeSoldats.at(index)->Attaque();
                     break;
 
+                case 'd' :
+                    listeSoldats.at(index)->SeDeplace();
+                    break;
+
                 case 'q' :
                     // Export des données dans un fichier xml
                     ofstream fichierMonde;
@@ -162,11 +166,10 @@ int main() {
         while(kbhit()) getch();
     }
 
-
-	/*delete m_Casque;
-	delete m_Fusil;
-	delete m_Gilet;*/
-	delete m_Soldat;
+    delete m_Accessoire1;
+    delete m_Accessoire2;
+    delete m_Accessoire3;
+    delete m_Soldat;
 	delete m_Cavalier;
 	delete m_Fantassin;
 	delete m_Pilote;

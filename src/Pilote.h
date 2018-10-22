@@ -9,6 +9,7 @@ namespace std {
 	class Pilote : public Soldat{
 		private:
 			string m_Avion;
+			int m_PointsVie;
 		public:
 			Pilote();
 			Pilote(string nom, int age, string regiment, string nomAvion, Accessoire *accessoire);

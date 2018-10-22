@@ -9,6 +9,7 @@ namespace std {
 	class Cavalier : public Soldat {
 		private:
 			string m_NomCheval;
+			int m_PointsVie;
 		public:
 			Cavalier();
 			Cavalier(string nom, int age, string regiment, string nomCheval, Accessoire *accessoire);

@@ -10,6 +10,7 @@ namespace std {
 		m_Age = a_Age;
 		m_Regiment = a_Regiment;
 		m_NomCheval = a_NomCheval;
+		m_PointsVie = 150;
 		m_Accessoire = a_Accessoire;
 	}
 

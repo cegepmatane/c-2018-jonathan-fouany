@@ -85,7 +85,7 @@ int main() {
 
 	Soldat* m_Soldat = new Soldat("Dupont", 20, "infanterie", m_Accessoire1);
 	Soldat* m_Cavalier = new Cavalier("Dupond", 30, "cavalerie", "toto", m_Accessoire2);
-	Fantassin* m_Fantassin = new Fantassin("Dupons", 40, "infanterie", "bernadette", m_Accessoire3);
+	Fantassin* m_Fantassin = new Fantassin("Francois", 40, "infanterie", "bernadette", m_Accessoire3);
 	Pilote* m_Pilote = new Pilote("Jackie", 28, "Armée de l'air", "F-16", m_Accessoire1);
 
 
@@ -121,12 +121,37 @@ int main() {
 
                 case 'a' :
                     listeSoldats.at(index)->Attaque();
+                    cout << "Points de vie: "  << listeSoldats.at(index)->getM_PointsVie() << endl;
+
+                    // L'attaque enleve des 50 points au soldat suivant
+                    if (listeSoldats.size() == 1){
+                        cout << "Vous ne pouvez plus attaquer, car vous etes tout seul" << endl;
+                        break;
+                    }
+                    if (index + 1 >= listeSoldats.size()) index = -1;
+
+                    index++;
+
+
+                    if (listeSoldats.at(index)->EstVivant()) {
+                        listeSoldats.at(index)->setM_PointsVie(listeSoldats.at(index)->getM_PointsVie() - 50);
+                        cout << listeSoldats.at(index)->getM_Nom() << " a plus que "
+                             << listeSoldats.at(index)->getM_PointsVie() << " points de vie." << endl;
+                    }
+                    else{
+                        cout << listeSoldats.at(index)->getM_Nom() << " est mort ! " << endl;
+                        listeSoldats.erase(listeSoldats.begin() + index);
+                    }
+
+                    index--;
+
                     break;
+
 
                 case 'c' :
                     if (index >= listeSoldats.size() - 1) index = -1;
                     index++;
-                    listeSoldats.at(index)->Attaque();
+                    cout << listeSoldats.at(index)->getM_Nom() << ", points de vie : " << listeSoldats.at(index)->getM_PointsVie() << endl;
                     break;
 
                 case 'd' :

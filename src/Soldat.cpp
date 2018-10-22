@@ -37,4 +37,21 @@ namespace std {
         return xml.str();
     }
 
+	int Soldat::getM_PointsVie() const {
+		return m_PointsVie;
+	}
+
+	void Soldat::setM_PointsVie(int m_PointsVie) {
+		Soldat::m_PointsVie = m_PointsVie;
+	}
+
+	bool Soldat::EstVivant() {
+		if (m_PointsVie <= 0) return false;
+		else return true;
+	}
+
+	const string &Soldat::getM_Nom() const {
+		return m_Nom;
+	}
+
 }

@@ -22,7 +22,14 @@ namespace std {
 			virtual ~Soldat();
 			virtual void SeDeplace();
 			virtual void Attaque();
+			virtual bool EstVivant();
             virtual string Exporter();
+
+		int getM_PointsVie() const;
+
+		void setM_PointsVie(int m_PointsVie);
+
+		const string &getM_Nom() const;
 
 		Accessoire *getM_Accessoire() const;
 

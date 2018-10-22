@@ -109,8 +109,8 @@ int main() {
     cout << "=== DEBUT DU JEU ===" << endl;
     cout << " Touche a : attaquer " << endl;
     cout << " Touche c : changer de personnage" << endl;
-    cout << " Touche d : déplacer" << endl;
-    cout << " Touche t : tuer" << endl;    cout << "=== DEBUT DU JEU ===" << endl;
+    cout << " Touche d : deplacer" << endl;
+    cout << " Touche t : tuer" << endl;
     cout << " Touche q : quitter" << endl;
     cout << " " << endl;
     cout << " Le jeu t'attend !" << endl;
@@ -128,18 +128,17 @@ int main() {
             switch(touche){
 
                 case 'a' :
-                    listeSoldats.at(index)->Attaque();
-                    cout << "Points de vie: "  << listeSoldats.at(index)->getM_PointsVie() << endl;
-
                     // L'attaque enleve des 50 points au soldat suivant
                     if (listeSoldats.size() == 1){
                         cout << "Vous ne pouvez plus attaquer, car vous etes tout seul." << endl;
                         break;
                     }
+
+                    listeSoldats.at(index)->Attaque();
+                    cout << "Points de vie: "  << listeSoldats.at(index)->getM_PointsVie() << endl;
+
                     if (index + 1 >= listeSoldats.size()) index = -1;
-
                     index++;
-
 
                     if (listeSoldats.at(index)->EstVivant()) {
                         listeSoldats.at(index)->setM_PointsVie(listeSoldats.at(index)->getM_PointsVie() - 50);
@@ -167,14 +166,15 @@ int main() {
                     break;
 
                 case 't' :
-                    cout << listeSoldats.at(index)->getM_Nom() << ": J'attaque et je tue" << endl;
-                    cout << "Points de vie: "  << listeSoldats.at(index)->getM_PointsVie() << endl;
-
                     // Cette attaque tue directement le joueur suivant
                     if (listeSoldats.size() == 1){
                         cout << "Vous ne pouvez pas tuer, car vous etes tout seul." << endl;
                         break;
                     }
+
+                    cout << listeSoldats.at(index)->getM_Nom() << ": J'attaque et je tue" << endl;
+                    cout << "Points de vie: "  << listeSoldats.at(index)->getM_PointsVie() << endl;
+
                     if (index + 1 >= listeSoldats.size()) index = -1;
 
                     index++;
@@ -207,6 +207,7 @@ int main() {
                     fichierMonde.close();
 
                     cout << "Sauvegarde de la partie realisee avec succes !" << endl;
+                    cout << "" << endl;
                     //Fin export
 
                     gameIsRunning = false;

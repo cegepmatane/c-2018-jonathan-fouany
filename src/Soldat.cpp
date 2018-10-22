@@ -37,6 +37,10 @@ namespace std {
         return xml.str();
     }
 
+    void Soldat::operator--() {
+		m_PointsVie = -100;
+	}
+
 	int Soldat::getM_PointsVie() const {
 		return m_PointsVie;
 	}

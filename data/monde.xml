@@ -6,7 +6,5 @@
 </Accessoires>
 <Soldats>
 <Cavalier><nom>Dupond</nom><age>30</age><regiment>cavalerie</regiment></Cavalier>
-<Fantassin><nom>Dupons</nom><age>40</age><grenade>bernadette</grenade></Fantassin>
-<Pilote><nom>Jackie</nom><age>28</age><avion>F-16</avion></Pilote>
 </Soldats>
 </Monde>

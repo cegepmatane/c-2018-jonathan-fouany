@@ -23,6 +23,7 @@ namespace std {
 			virtual void SeDeplace();
 			virtual void Attaque();
 			virtual bool EstVivant();
+			virtual void operator--();
             virtual string Exporter();
 
 		int getM_PointsVie() const;

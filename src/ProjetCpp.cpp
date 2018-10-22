@@ -170,7 +170,7 @@ int main() {
                     if (index + 1 >= listeSoldats.size()) index = -1;
 
                     index++;
-                    listeSoldats.at(index)->setM_PointsVie(-100);
+                    listeSoldats.at(index)->operator--();
                     cout << listeSoldats.at(index)->getM_Nom() << " est mort ! " << endl;
                     listeSoldats.erase(listeSoldats.begin() + index);
                     index--;

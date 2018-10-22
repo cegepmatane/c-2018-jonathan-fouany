@@ -82,9 +82,6 @@ int main() {
     //Fin lecture des données
 
 
-    /*Fusil* m_Fusil = new Fusil("one", 2, "noir", 300);
-    Casque* m_Casque = new Casque("two", 1, "vert", 50);
-    Gilet* m_Gilet = new Gilet("gilet", 18, "marron", 10);*/
 
 	Soldat* m_Soldat = new Soldat("Dupont", 20, "infanterie", m_Accessoire1);
 	Soldat* m_Cavalier = new Cavalier("Dupond", 30, "cavalerie", "toto", m_Accessoire2);
@@ -104,42 +101,12 @@ int main() {
     listeSoldats.push_back(m_Pilote);
 
 
-
-    /*for (int i = 0; i < listeSoldats.size(); ++i) {
-        cout << "========" << endl;
-        listeSoldats.at(i)->SeDeplace();
-        listeSoldats.at(i)->Attaque();
-        listeSoldats.at(i)->getM_Accessoire()->ListerDetailsAccessoire();
-    }*/
-
-
-    // Export des données dans un fichier xml
-    ofstream fichierMonde;
-    fichierMonde.open("../data/monde.xml");
-    fichierMonde << "<Monde>" << endl;
-
-    fichierMonde << "<Accessoires>" << endl;
-    for (int j = 0; j < listeAccessoires.size(); ++j) {
-        fichierMonde << listeAccessoires.at(j)->Exporter() << endl;
-    }
-    fichierMonde << "</Accessoires>" << endl;
-
-    fichierMonde << "<Soldats>" << endl;
-    for (int j = 0; j < listeSoldats.size(); ++j) {
-        fichierMonde << listeSoldats.at(j)->Exporter() << endl;
-    }
-    fichierMonde << "</Soldats>" << endl;
-
-    fichierMonde << "</Monde>" << endl;
-    fichierMonde.close();
-    //Fin export
-
-
     //BOUCLE INFINIE DE JEU
-    int tour = 0;
     char touche;
     bool gameIsRunning = true;
     int index = 0;
+
+    cout << "=== DEBUT DU JEU ===" << endl;
 
     while(gameIsRunning){
         // PREMIER PROBLEME-SOLUTION : dormir sans occuper les ressources
@@ -151,34 +118,49 @@ int main() {
             //cout << "touche " << touche << " " << tour << endl;
 
             switch(touche){
-                case 'q' :
-                    gameIsRunning = false;
-                    cout << "Vous avez quitté le jeu." << endl;
-                    break;
-
-                case 'c' :
-                    if (index >= listeSoldats.size()) index = 0;
-                    listeSoldats.at(index++)->Attaque();
-                    break;
 
                 case 'a' :
                     listeSoldats.at(index)->Attaque();
+                    break;
+
+                case 'c' :
+                    if (index >= listeSoldats.size() - 1) index = -1;
+                    index++;
+                    listeSoldats.at(index)->Attaque();
+                    break;
+
+                case 'q' :
+                    // Export des données dans un fichier xml
+                    ofstream fichierMonde;
+                    fichierMonde.open("../data/monde.xml");
+                    fichierMonde << "<Monde>" << endl;
+
+                    fichierMonde << "<Accessoires>" << endl;
+                    for (int j = 0; j < listeAccessoires.size(); ++j) {
+                        fichierMonde << listeAccessoires.at(j)->Exporter() << endl;
+                    }
+                    fichierMonde << "</Accessoires>" << endl;
+
+                    fichierMonde << "<Soldats>" << endl;
+                    for (int j = 0; j < listeSoldats.size(); ++j) {
+                        fichierMonde << listeSoldats.at(j)->Exporter() << endl;
+                    }
+                    fichierMonde << "</Soldats>" << endl;
+
+                    fichierMonde << "</Monde>" << endl;
+                    fichierMonde.close();
+
+                    cout << "Sauvegarde de la partie realisee avec succes !" << endl;
+                    //Fin export
+
+                    gameIsRunning = false;
+                    cout << "=== FIN DU JEU ===" << endl;
                     break;
             }
         }
 
         while(kbhit()) getch();
-
-        //cout << "tour " << tour << endl;
-        tour++;
     }
-
-
-
-
-
-
-
 
 
 	/*delete m_Casque;

@@ -107,7 +107,15 @@ int main() {
     int index = 0;
 
     cout << "=== DEBUT DU JEU ===" << endl;
+    cout << " Touche a : attaquer " << endl;
+    cout << " Touche c : changer de personnage" << endl;
+    cout << " Touche d : déplacer" << endl;
+    cout << " Touche t : tuer" << endl;    cout << "=== DEBUT DU JEU ===" << endl;
+    cout << " Touche q : quitter" << endl;
+    cout << " " << endl;
+    cout << " Le jeu t'attend !" << endl;
 
+    
     while(gameIsRunning){
         // PREMIER PROBLEME-SOLUTION : dormir sans occuper les ressources
         Sleep(1000/60);
@@ -170,7 +178,7 @@ int main() {
                     if (index + 1 >= listeSoldats.size()) index = -1;
 
                     index++;
-                    listeSoldats.at(index)->operator--();
+                    -- * listeSoldats.at(index);
                     cout << listeSoldats.at(index)->getM_Nom() << " est mort ! " << endl;
                     listeSoldats.erase(listeSoldats.begin() + index);
                     index--;

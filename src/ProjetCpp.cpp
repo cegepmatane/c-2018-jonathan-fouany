@@ -125,7 +125,7 @@ int main() {
 
                     // L'attaque enleve des 50 points au soldat suivant
                     if (listeSoldats.size() == 1){
-                        cout << "Vous ne pouvez plus attaquer, car vous etes tout seul" << endl;
+                        cout << "Vous ne pouvez plus attaquer, car vous etes tout seul." << endl;
                         break;
                     }
                     if (index + 1 >= listeSoldats.size()) index = -1;
@@ -156,6 +156,25 @@ int main() {
 
                 case 'd' :
                     listeSoldats.at(index)->SeDeplace();
+                    break;
+
+                case 't' :
+                    cout << listeSoldats.at(index)->getM_Nom() << ": J'attaque et je tue" << endl;
+                    cout << "Points de vie: "  << listeSoldats.at(index)->getM_PointsVie() << endl;
+
+                    // Cette attaque tue directement le joueur suivant
+                    if (listeSoldats.size() == 1){
+                        cout << "Vous ne pouvez pas tuer, car vous etes tout seul." << endl;
+                        break;
+                    }
+                    if (index + 1 >= listeSoldats.size()) index = -1;
+
+                    index++;
+                    listeSoldats.at(index)->setM_PointsVie(-100);
+                    cout << listeSoldats.at(index)->getM_Nom() << " est mort ! " << endl;
+                    listeSoldats.erase(listeSoldats.begin() + index);
+                    index--;
+
                     break;
 
                 case 'q' :

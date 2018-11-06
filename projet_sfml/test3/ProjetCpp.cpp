@@ -3,7 +3,9 @@
 #include <vector>
 #include <fstream>
 #include <conio.h>
-#include <afxres.h>
+//#include <afxres.h>
+#include <thread>
+#include <chrono>
 #include "Soldat.h"
 #include "Cavalier.h"
 #include "Fantassin.h"
@@ -12,6 +14,7 @@
 #include "Fusil.h"
 #include "Casque.h"
 #include "Gilet.h"
+#include <SFML/Graphics.hpp>
 
 using namespace std;
 
@@ -26,14 +29,18 @@ int main() {
     string ligne;
 
     string nom;
-    int valeur1;
+	int valeur1 = 0;
     string couleur;
-    int valeur2;
+    int valeur2 = 0;
 
-    Accessoire* m_Accessoire1;
-    Accessoire* m_Accessoire2;
-    Accessoire* m_Accessoire3;
+    Accessoire* m_Accessoire1 = new Accessoire();
+    Accessoire* m_Accessoire2 = new Accessoire();
+    Accessoire* m_Accessoire3 = new Accessoire();
+	delete m_Accessoire1;
+	delete m_Accessoire2;
+	delete m_Accessoire3;
 
+	
     int compteurLigne = -1;
 
     while(!source.eof()) {
@@ -63,8 +70,9 @@ int main() {
                 case 3:
                     valeur2 = stoi(valeur);
                     break;
+				
             }
-
+			
             if (compteur % 3 == 0 && compteurLigne == 0)
                 m_Accessoire1 = new Gilet(nom, valeur1, couleur, valeur2);
             else if (compteur % 3 == 0 && compteurLigne == 1)
@@ -109,20 +117,86 @@ int main() {
     cout << "=== DEBUT DU JEU ===" << endl;
     cout << " Touche a : attaquer " << endl;
     cout << " Touche c : changer de personnage" << endl;
-    cout << " Touche d : deplacer" << endl;
+    cout << " Touche d : se deplacer en bas" << endl;
+	cout << " Touche e : se deplacer en haut" << endl;
+	cout << " Touche s : se deplacer a gauche" << endl;
+	cout << " Touche f : se deplacer a droite" << endl;
     cout << " Touche t : tuer" << endl;
     cout << " Touche q : quitter" << endl;
     cout << " " << endl;
     cout << " Le jeu t'attend !" << endl;
 
+
+	// ======= PARTIE GRAPHIQUE =======
+
+	sf::RenderWindow window(sf::VideoMode(1300, 800), "Projet SFML");
+	sf::Texture BackgroundTexture;
+	sf::Sprite background;
+	sf::Vector2u TextureSize;  //Added to store texture size.
+	sf::Vector2u WindowSize;   //Added to store window size.
+
+	if (!BackgroundTexture.loadFromFile("../data/fond.png")){
+		return -1;
+	}
+	else{
+		TextureSize = BackgroundTexture.getSize(); //Get size of texture.
+		WindowSize = window.getSize();             //Get size of window.
+
+		float ScaleX = (float)WindowSize.x / TextureSize.x;
+		float ScaleY = (float)WindowSize.y / TextureSize.y;     //Calculate scale.
+
+		background.setTexture(BackgroundTexture);
+		background.setScale(ScaleX, ScaleY);
+	}
+
+	int positionImageX = 825; int positionImageY = 530;
+
+	sf::Texture textureCavalier;
+	if (!textureCavalier.loadFromFile("../data/cavalier.png"))
+	{
+		return -1;
+	}
+	sf::Sprite imageCavalier(textureCavalier);
+	imageCavalier.setScale(0.1f, 0.1f);
+	imageCavalier.setPosition(positionImageX, positionImageY);
+
+	sf::Texture texturePilote;
+	if (!texturePilote.loadFromFile("../data/pilote.png"))
+	{
+		return -1;
+	}
+	sf::Sprite imagePilote(texturePilote);
+
+	sf::Texture textureFantassin;
+	if (!textureFantassin.loadFromFile("../data/fantassin.png"))
+	{
+		return -1;
+	}
+	sf::Sprite imageFantassin(textureFantassin);
+
+	vector<sf::Sprite> listeImages;
+	listeImages.push_back(imageCavalier);
+	listeImages.push_back(imageFantassin);
+	listeImages.push_back(imagePilote);
+
+	int indexPourListeImage = 0;
     
-    while(gameIsRunning){
+    while(gameIsRunning || window.isOpen()){
         // PREMIER PROBLEME-SOLUTION : dormir sans occuper les ressources
-        Sleep(1000/60);
+        this_thread::sleep_for(chrono::milliseconds(1000/60));
         // SECOND PROBLEME-SOLUTION : lire les entrées sans bloquer la boucle
+
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				window.close();
+		}
+
+
         if(_kbhit()){
 
-            touche = getch(); // sors la premiere touche appuyée
+            touche = _getch(); // sors la premiere touche appuyée
             //cout << "touche " << touche << " " << tour << endl;
 
             switch(touche){
@@ -136,6 +210,8 @@ int main() {
 
                     listeSoldats.at(index)->Attaque();
                     cout << "Points de vie: "  << listeSoldats.at(index)->getM_PointsVie() << endl;
+					cout << "" << endl;
+
 
                     if (index + 1 >= listeSoldats.size()) index = -1;
                     index++;
@@ -144,6 +220,8 @@ int main() {
                         listeSoldats.at(index)->setM_PointsVie(listeSoldats.at(index)->getM_PointsVie() - 50);
                         cout << listeSoldats.at(index)->getM_Nom() << " a plus que "
                              << listeSoldats.at(index)->getM_PointsVie() << " points de vie." << endl;
+						cout << "" << endl;
+
                     }
                     else{
                         cout << listeSoldats.at(index)->getM_Nom() << " est mort ! " << endl;
@@ -158,12 +236,30 @@ int main() {
                 case 'c' :
                     if (index >= listeSoldats.size() - 1) index = -1;
                     index++;
+					indexPourListeImage++;
                     cout << listeSoldats.at(index)->getM_Nom() << ", points de vie : " << listeSoldats.at(index)->getM_PointsVie() << endl;
+					cout << "" << endl;
                     break;
 
-                case 'd' :
+                case 's' : // à gauche
                     listeSoldats.at(index)->SeDeplace();
+					positionImageX -= 10;
                     break;
+
+				case 'f': // à droite
+					listeSoldats.at(index)->SeDeplace();
+					positionImageX += 10;
+					break;
+
+				case 'e': // en bas
+					listeSoldats.at(index)->SeDeplace();
+					positionImageY -= 10;
+					break;
+
+				case 'd': // en haut
+					listeSoldats.at(index)->SeDeplace();
+					positionImageY += 10;
+					break;
 
                 case 't' :
                     // Cette attaque tue directement le joueur suivant
@@ -181,6 +277,8 @@ int main() {
                     -- * listeSoldats.at(index);
                     cout << listeSoldats.at(index)->getM_Nom() << " est mort ! " << endl;
                     listeSoldats.erase(listeSoldats.begin() + index);
+					listeImages.erase(listeImages.begin() + index);
+
                     index--;
 
                     break;
@@ -212,11 +310,19 @@ int main() {
 
                     gameIsRunning = false;
                     cout << "=== FIN DU JEU ===" << endl;
+					window.close();
                     break;
             }
         }
 
-        while(kbhit()) getch();
+        while(_kbhit()) _getch();
+
+		window.clear();
+		window.draw(background);
+		listeImages.at(indexPourListeImage % listeImages.size()).setPosition(positionImageX, positionImageY);
+		window.draw(listeImages.at(indexPourListeImage % listeImages.size()));
+		window.display();
+
     }
 
     delete m_Accessoire1;
@@ -226,6 +332,7 @@ int main() {
 	delete m_Cavalier;
 	delete m_Fantassin;
 	delete m_Pilote;
+
 
 	return 0;
 }
